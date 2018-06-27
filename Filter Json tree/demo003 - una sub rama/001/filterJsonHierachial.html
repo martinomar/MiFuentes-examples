@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)http://demo.sodhanalibrary.com/angular/filterJsonInHierachialWay/filterJsonHierachial.html -->
+<html data-ng-app="myApp" data-ng-controller="MyCtrl" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}</style>
+<script src="./filterJsonHierachial_files/angular.min.js.descarga"></script>
+<link rel="stylesheet" type="text/css" href="./filterJsonHierachial_files/style.css">
+<style>
+.middlePanel {
+ margin:auto;
+ width:500px;
+}
+</style>
+</head>
+<body>
+<div style="width:730px;margin:auto">
+<script async="" src="./filterJsonHierachial_files/f.txt"></script>
+<!-- demos -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-4537529140156254" data-ad-slot="4444050329"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+	<div class="middlePanel">
+		<script type="text/ng-template" id="tree_item_renderer.html">
+            <li>{{data.name}}</li>
+            <li data-ng-if="data.CHILDREN.length > 0">
+               <ul data-ng-repeat="data in data.CHILDREN" data-ng-include="tree_item_renderer.html"></ul>
+            </li>
+        </script>
+		<div>Enter text to filter data</div>
+		<div>
+			<input data-ng-model="searchVal" placeholder="enter text here" class="ng-pristine ng-valid">
+		</div>
+		<div>
+			<!-- ngRepeat: data in mainData --><ul data-ng-repeat="data in mainData" data-ng-hide="showFilteredData" class="ng-scope">
+				<li class="ng-binding">cse
+					<!-- ngIf: data.CHILDREN.length > 0 --><div data-ng-if="data.CHILDREN.length &gt; 0" class="ng-scope">
+						<!-- ngRepeat: data in data.CHILDREN --><!-- ngInclude: 'tree_item_renderer.html' --><ul data-ng-repeat="data in data.CHILDREN" data-ng-include="&#39;tree_item_renderer.html&#39;" class="ng-scope">
+            <li class="ng-scope ng-binding">OS</li>
+            <!-- ngIf: data.CHILDREN.length > 0 -->
+        </ul><!-- end ngRepeat: data in data.CHILDREN --><!-- ngInclude: 'tree_item_renderer.html' --><ul data-ng-repeat="data in data.CHILDREN" data-ng-include="&#39;tree_item_renderer.html&#39;" class="ng-scope">
+            <li class="ng-scope ng-binding">OOPS</li>
+            <!-- ngIf: data.CHILDREN.length > 0 -->
+        </ul><!-- end ngRepeat: data in data.CHILDREN -->
+					</div><!-- end ngIf: data.CHILDREN.length > 0 -->
+				</li>
+			</ul><!-- end ngRepeat: data in mainData --><ul data-ng-repeat="data in mainData" data-ng-hide="showFilteredData" class="ng-scope">
+				<li class="ng-binding">mech
+					<!-- ngIf: data.CHILDREN.length > 0 --><div data-ng-if="data.CHILDREN.length &gt; 0" class="ng-scope">
+						<!-- ngRepeat: data in data.CHILDREN --><!-- ngInclude: 'tree_item_renderer.html' --><ul data-ng-repeat="data in data.CHILDREN" data-ng-include="&#39;tree_item_renderer.html&#39;" class="ng-scope">
+            <li class="ng-scope ng-binding">Dynamics</li>
+            <!-- ngIf: data.CHILDREN.length > 0 -->
+        </ul><!-- end ngRepeat: data in data.CHILDREN --><!-- ngInclude: 'tree_item_renderer.html' --><ul data-ng-repeat="data in data.CHILDREN" data-ng-include="&#39;tree_item_renderer.html&#39;" class="ng-scope">
+            <li class="ng-scope ng-binding">Mechines</li>
+            <!-- ngIf: data.CHILDREN.length > 0 -->
+        </ul><!-- end ngRepeat: data in data.CHILDREN -->
+					</div><!-- end ngIf: data.CHILDREN.length > 0 -->
+				</li>
+			</ul><!-- end ngRepeat: data in mainData --><ul data-ng-repeat="data in mainData" data-ng-hide="showFilteredData" class="ng-scope">
+				<li class="ng-binding">biotech
+					<!-- ngIf: data.CHILDREN.length > 0 --><div data-ng-if="data.CHILDREN.length &gt; 0" class="ng-scope">
+						<!-- ngRepeat: data in data.CHILDREN --><!-- ngInclude: 'tree_item_renderer.html' --><ul data-ng-repeat="data in data.CHILDREN" data-ng-include="&#39;tree_item_renderer.html&#39;" class="ng-scope">
+            <li class="ng-scope ng-binding">cardio</li>
+            <!-- ngIf: data.CHILDREN.length > 0 -->
+        </ul><!-- end ngRepeat: data in data.CHILDREN --><!-- ngInclude: 'tree_item_renderer.html' --><ul data-ng-repeat="data in data.CHILDREN" data-ng-include="&#39;tree_item_renderer.html&#39;" class="ng-scope">
+            <li class="ng-scope ng-binding">biochemicals</li>
+            <!-- ngIf: data.CHILDREN.length > 0 -->
+        </ul><!-- end ngRepeat: data in data.CHILDREN -->
+					</div><!-- end ngIf: data.CHILDREN.length > 0 -->
+				</li>
+			</ul><!-- end ngRepeat: data in mainData -->
+			<!-- ngRepeat: data in filteredData -->
+		</div>
+	</div>
+	<script>
+var myApp = angular.module('myApp', []);
+
+function MyCtrl($scope) {
+	$scope.mainData = [ {
+		"name" : "cse",
+		"CHILDREN" : [ {
+			"name" : "OS",
+			"CHILDREN" : []
+		}, {
+			"name" : "OOPS",
+			"CHILDREN" : []
+		} ]
+	}, {
+		"name" : "mech",
+		"CHILDREN" : [ {
+			"name" : "Dynamics",
+			"CHILDREN" : []
+		}, {
+			"name" : "Mechines",
+			"CHILDREN" : []
+		} ]
+	}, {
+		"name" : "biotech",
+		"CHILDREN" : [ {
+			"name" : "cardio",
+			"CHILDREN" : []
+		}, {
+			"name" : "biochemicals",
+			"CHILDREN" : []
+		} ]
+	} ];
+	$scope.filteredData = [];
+
+	$scope.$watch('searchVal', function() {
+		if ($scope.searchVal == null || $scope.searchVal.length == 0) {
+			$scope.showFilteredData = false;
+		} else {
+			$scope.filteredData = [];
+			var temp = angular.copy($scope.mainData);
+			$scope.lowerCaseSearchKeyword = $scope.searchVal
+					.toLowerCase();
+			$scope.filterResources(temp);
+			$scope.showFilteredData = true;
+			$scope.filteredData = temp;
+		}
+	});
+
+	$scope.filterResources = function(resourceList) {
+		for (var i = 0; i < resourceList.length; i++) {
+			if (resourceList[i].CHILDREN != null
+					&& resourceList[i].CHILDREN.length > 0) {
+				$scope.filterResources(resourceList[i].CHILDREN);
+				if (resourceList[i].CHILDREN.length == 0) {
+					var name = resourceList[i].name.toLowerCase();
+					if (!(name.indexOf($scope.lowerCaseSearchKeyword) >= 0)) {
+						resourceList.splice(i, 1);
+						i--;
+					}
+				}
+			} else {
+				var name = resourceList[i].name.toLowerCase();
+				if (!(name.indexOf($scope.lowerCaseSearchKeyword) >= 0)) {
+					resourceList.splice(i, 1);
+					i--;
+				}
+			}
+		}
+	};
+
+}
+	</script>
+
+
+</body></html>

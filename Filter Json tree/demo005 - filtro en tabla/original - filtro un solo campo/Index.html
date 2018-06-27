@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+ <html ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <script src="./js/angular.min.js"></script>
+  <script src="./js/jquery-1.9.1.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <!DOCTYPE html>
+ <html ng-app="myApp">
+  
+  <script>
+      var myApp = angular.module('myApp',[]);
+      myApp.controller('SampleController', function($scope){
+            $scope.accounts = [ 
+                    {id: 1, name: 'Cash'}, 
+                    {id: 2, name: 'Bank Savings'} 
+                  ];
+            $scope.payees = [
+                    {id:'1',name:'HouseRent', txnType:'EXPENDITURE'},
+                    {id: '2', name:'InternetBill', txnType:'EXPENDITURE'}, 
+                    {id:'3', name: 'PowerBill', txnType:'EXPENDITURE'}, 
+                    {id:'4', name: 'Salary', txnType:'INCOME'}
+                  ];
+            $scope.transactions = [
+                {id:'1', txnType:'EXPENDITURE', amount: 1000, account: $scope.accounts[0], payee: $scope.payees[0]},
+                {id:'2', txnType:'EXPENDITURE', amount: 500, account: $scope.accounts[1], payee: $scope.payees[1]},
+                {id:'3', txnType:'EXPENDITURE', amount: 1200, account: $scope.accounts[0], payee: $scope.payees[1]},
+                {id:'4', txnType:'INCOME', amount: 5000, account: $scope.accounts[1], payee: $scope.payees[3]},
+                {id:'5', txnType:'EXPENDITURE', amount:200, account: $scope.accounts[0], payee: $scope.payees[2]}
+            ];
+
+      });
+      
+  </script>  
+</head>
+<body ng-controller="SampleController" ng-init="payeeName=''">
+<br/>
+
+<input type="text" ng-model="payeeName">
+<br/>
+ <div class="col-md-8 col-md-offset-2">
+        
+    <h3>Transaction Details</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Account</th>
+                <th>Type</th>
+                <th>Payee</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="txn in transactions| filter: {payee.name : payeeName}">
+            <!-- <tr ng-repeat="txn in transactions"> -->
+                <td>{{$index + 1}}</td>
+                <td>{{txn.account.name}}</td>
+                <td>{{txn.txnType}}</td> 
+                <td>{{txn.payee.name}}</td> 
+                <td>{{txn.amount}}</td> 
+            </tr>
+        </tbody>
+    </table>
+</div>
+payeeName:{{payeeName}}
+<hr/>
+  <div class="container-fluid">
+    <pre>
+      {{transactions | json}}
+    </pre>
+  </div>
+<hr/>
+</body>
+</html>

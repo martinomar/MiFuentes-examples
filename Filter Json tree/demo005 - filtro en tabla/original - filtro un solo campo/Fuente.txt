@@ -1,0 +1,2 @@
+https://gist.github.com/sivaprasadreddy/fbee047803d14631fafd
+https://www.javacodegeeks.com/2014/09/angularjs-different-ways-of-using-array-filters.html

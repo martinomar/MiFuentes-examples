@@ -1,0 +1,123 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+
+    <div ng-repeat="name in ['Sanjib Pradhan']" ng-include="'your_template.html'"></div>
+    <div ng-repeat="name in ['Chinmay Sahu']" ng-include="'your_template.html'"></div>
+
+
+    <script type="text/ng-template" id="your_template.html">
+          {{name}}
+    </script>
+
+
+<link rel="stylesheet" href="bootstrap-combined.min.css">
+<script src="angular.min.js"></script>
+<script src="jquery-3.3.1.min.js"></script>
+
+<script type="text/ng-template"  id="tree_item_renderer.html">
+    {{data.name}}
+    <ul ng-show="data.show">
+        <li ng-repeat="data in data.nodes" ng-include="'tree_item_renderer.html'"></li>
+    </ul>
+</script>
+
+<div ng-app="Application" ng-controller="TreeController" ng-cloak>   
+    <div class="input-append">      
+        <input class="span2"  ng-model="search" id="inputIcon" type="text" />
+        <span class="add-on"><i class="icon-search"></i></span>
+    </div>
+    <div>
+        <strong  ng-show="search.length > 0">Matching results: {{ (displayTree|filter:search).length }}</strong>
+        <ul>
+            <li ng-repeat="data in displayTree | filter:search" ng-include="">{{data.name}}</li>
+        </ul>
+    </div>
+        <sub>displayTree JSON : <br /></sub> 
+        <pre>{{ displayTree | json | filter:search }}</pre>
+</div>
+<style>
+    body {
+    padding: 30px;
+}
+</style>
+    
+    <script>
+        angular.module("Application", []).
+controller("TreeController", ['$scope', function ($scope) {
+    // http://www.jsonmate.com/permalink/71a30dd682d0aac7eb0367b49c049730
+    $scope.fullTree = [{
+        "name": "Node",
+            "show": true,
+            "nodes": [{
+            "name": "Node-1",
+                "show": true,
+                "nodes": [{
+                "name": "Node-1-1",
+                    "show": true,
+                    "nodes": []
+            }, {
+                "name": "Node-1-2",
+                    "show": true,
+                    "nodes": []
+            }, {
+                "name": "Node-1-3",
+                    "show": true,
+                    "nodes": []
+            }]
+        }, {
+            "name": "Node-2",
+                "show": true,
+                "nodes": [{
+                "name": "Node-2-1",
+                    "show": true,
+                    "nodes": [{
+                    "name": "Node-2-1-1",
+                        "show": true,
+                        "nodes": []
+                }, {
+                    "name": "Node-2-1-2-ggg",
+                        "show": true,
+                        "nodes": []
+                }]
+            }]
+        }, {
+            "name": "Node-3",
+                "show": true,
+                "nodes": []
+        }, {
+            "name": "Node-4",
+                "show": true,
+                "nodes": []
+        }]
+    }];
+
+    $scope.displayTree = $scope.fullTree;
+    $scope.flattenedTree = [];
+    $scope.search = "";
+    $scope.$watch('search', function (val) {
+        if ($scope.flattenedTree.length === 0) {
+            flattenJsonArray($scope.fullTree, $scope.flattenedTree, "nodes", ["show", "nodes"]);
+        }
+        $scope.displayTree = val.length > 0 ? $scope.flattenedTree : $scope.fullTree;
+    });
+
+
+// Flattens an array using recursion.
+function flattenJsonArray(originalArray, flattenedArray, propertyArrayName, propertiesToRemoveArray) {
+    if (!originalArray) return;
+
+    $.each(originalArray, function (index, item) {
+        var newItem = jQuery.extend(true, {}, item);
+        if (propertiesToRemoveArray) {
+            $.each(propertiesToRemoveArray, function (i, j) {
+                delete newItem[j]
+            });
+        }
+        flattenedArray.push(newItem);
+        flattenJsonArray(item[propertyArrayName], flattenedArray, propertyArrayName, propertiesToRemoveArray);
+    });
+}
+
+}]);
+
+
+    </script>

@@ -1,0 +1,94 @@
+<html ng-app="myApp">
+<head>
+	<title>Demonstration for Tree List Filter</title>
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="js/TreeListFilter.js"></script>
+	<script type="text/javascript" src="js/angular.min.1.5.6.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+
+</head>
+<body ng-controller="myController">
+
+	<input id="filterOrg" placeholder="Type to filter" /><br/>
+	<ul id="root_treeOrg">
+		<li ng-repeat="obj in organigrama">
+			{{obj.nombre}}
+			<ul>
+				<li>
+					Cargos:
+					<ul>
+						<li ng-repeat="objSn2C in obj.Cargos">
+							{{objSn2C.info.nombreCargo}}
+							<ul>
+								<li>
+									Colaboradores:
+									<ul>
+										<li ng-repeat="objSn3Cl in  objSn2C.colaboradores">
+											{{objSn3Cl.nombreColab }}
+										</li>
+									</ul>
+									
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li>
+					Entidades:
+					<ul>
+						<li ng-repeat="objSn2A in obj.Subareas">
+							{{objSn2A.info.nombre}}
+							<ul>
+								<li>
+									Cargosx:
+									<ul>
+										<li ng-repeat="objSn2_1C in objSn2A.Cargos">
+											{{objSn2_1C}}
+											{{objSn2_1C.info.nombreCargo}}
+											<ul>
+												<li>
+													ColaboradorY:
+													<ul>
+														<li ng-repeat="objSn2_3Cl in objSn2_1C.colaboradores"> 
+															{{objSn2_3Cl.nombreColab}}			
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									SubAreasx222:
+									<ul>
+										<li ng-repeat="objSn2_1A in objSn2A.Subareas">
+											{{objSn2_1A.info.nombre}}
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+<!-- <pre>
+	{{organigrama| json}}
+</pre> -->
+
+
+<script type="text/javascript">
+	$(function() {
+		$('#filterOrg').treeListFilter('#root_treeOrg', 0);
+		var out =1;
+		var comp =2;
+		out = comp || out;
+		alert(out);
+
+	});
+</script>
+
+</body>
+</html>

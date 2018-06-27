@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-1.10.2.min.js" ></script>
+</head>
+<body>
+<script>
+	$(function(){
+		alert('hi');
+		var names = [
+				{name:'joa',id:522}
+				,{name:'omar',id:231}
+				,{name:'err',id:633}
+			]
+
+			$.map(names,function(val,key){
+				alert(val.name);
+			});
+	})
+</script>
+	
+</body>
+</html>

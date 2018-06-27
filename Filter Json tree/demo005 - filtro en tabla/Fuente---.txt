@@ -1,0 +1,2 @@
+https://www.javacodegeeks.com/2014/09/angularjs-different-ways-of-using-array-filters.html
+https://dzone.com/articles/angularjs-different-ways-using
